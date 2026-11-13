@@ -54,10 +54,7 @@ def reading_config(
         return (False, "Valor invalido em configuração")
 
 
-def validate_values(
-        key: str,
-        value: str
-        ) -> ConfigValue:
+def validate_values(key: str, value: str) -> ConfigValue:
     if (key == "width" or key == "height") and int(value) > 0:
         return int(value)
     elif key == "perfect" and value == "True":
