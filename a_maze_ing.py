@@ -1,6 +1,7 @@
 import sys
 from typing import Tuple, TypeAlias
 ConfigValue: TypeAlias = int | str | bool | dict[str, int] | None
+import maze_grid
 
 
 def main() -> None:
@@ -34,7 +35,7 @@ def main() -> None:
         print("Configuracao incompleta")
     else:
         print("Todos os valores validos")
-
+    maze_grid.maze_generator(config["width"],config["height"])
 
 def reading_config(
         lines: list[str],
