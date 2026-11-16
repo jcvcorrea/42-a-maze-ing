@@ -1,10 +1,8 @@
 PYTHON = python3
-
 NAME = a_maze_ing.py 
-
 CONFIG = config.txt
-
 REMOVE = __pycache__ .mypy_cache
+VENV = .venv/bin/
 
 run:
 	$(PYTHON) $(NAME) $(CONFIG)
@@ -16,8 +14,16 @@ clean:
 	rm -rf $(REMOVE)
 
 lint:
+	$(VENV)flake8 $(NAME)
+	$(VENV)mypy $(NAME) --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
 
+lint-strict:
+	$(VENV)flake8 $(NAME)
+	$(VENV)mypy $(NAME) --strict
 
 install:
+	python3 -m venv .venv
+	$(VENV)python -m pip install mypy
+	$(VENV)python -m pip install flake8
 
-.PHONY: run debug clean
+.PHONY: run debug clean lint lint-strict install
