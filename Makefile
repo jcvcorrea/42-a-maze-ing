@@ -4,8 +4,20 @@ NAME = a_maze_ing.py
 
 CONFIG = config.txt
 
+REMOVE = __pycache__ .mypy_cache
+
 run:
 	$(PYTHON) $(NAME) $(CONFIG)
 
 debug:
-	python3 -m pdb a_maze_ing.py config.txt
+	$(PYTHON) -m pdb $(NAME) $(CONFIG)
+
+clean:
+	rm -rf $(REMOVE)
+
+lint:
+
+
+install:
+
+.PHONY: run debug clean
