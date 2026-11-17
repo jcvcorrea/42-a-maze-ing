@@ -37,15 +37,39 @@ def main() -> None:
     output_file = config["output_file"]
     perfect = config["perfect"]
 
-    if (
-        not isinstance(width, int) or
-        not isinstance(height, int) or
-        not isinstance(entry, dict) or
-        not isinstance(exit_point, dict) or
-        not isinstance(output_file, str) or
-        not isinstance(perfect, bool)
-    ):
-        raise TypeError("Configuracao inválidas")
+    try:
+        if (
+            not isinstance(width, int) or
+            not isinstance(height, int) or
+            not isinstance(entry, dict) or
+            not isinstance(exit_point, dict) or
+            not isinstance(output_file, str) or
+            not isinstance(perfect, bool)
+        ):
+            raise TypeError("Erro de Configuração - Configuração inválidas")
+
+        if (
+            not 0 <= entry["x"] < width or
+            not 0 <= entry["y"] < height
+        ):
+            raise ValueError("Erro de Configuração - Entrada impossível")
+
+        if (
+            not 0 <= exit_point["x"] < width or
+            not 0 <= exit_point["y"] < height
+        ):
+            raise ValueError("Erro de Configuração - Saída impossível")
+
+        if (
+            not width > 8 or
+            not height > 6
+        ):
+            raise ValueError("Erro de Configuração - Maze menor que mínimo")
+
+        if entry == exit_point:
+            raise ValueError("Erro de Configuração - Entrada e Saída iguais")
+    except (ValueError, TypeError) as config_error:
+        return print(config_error)
 
     maze_config = MazeConfig(
             width=width,
@@ -71,16 +95,19 @@ def reading_config(
         ) -> Tuple[bool, str]:
     try:
         for line in lines:
+            if not line or line[0] == '\n' or line[0] == '#':
+                continue
             if line[-1] == '\n':
                 line = line[:-1]
-            if line.find("=") > 0 and not line[-1] == "=":
-                key = line[:line.find("=")].lower()
-                if key in config.keys():
-                    value = line[line.find("=")+1:]
-                    config[key] = validate_values(key, value)
+            if not (line.find("=") > 0 and not line[-1] == "="):
+                return (False, "Sintaxe inválida em configuralção")
+            key = line[:line.find("=")].lower()
+            if key in config.keys():
+                value = line[line.find("=")+1:]
+                config[key] = validate_values(key, value)
         return (True, "")
     except ValueError:
-        return (False, "Valor invalido em configuração")
+        return (False, "Valor inválido em configuração")
 
 
 def validate_values(key: str, value: str) -> ConfigValue:
