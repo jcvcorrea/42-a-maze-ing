@@ -24,7 +24,11 @@ lint-strict:
 
 install:
 	python3 -m venv .venv
-	$(VENV)python -m pip install mypy
-	$(VENV)python -m pip install flake8
+	$(VENV)python -m pip install -r requirements.txt
+	$(VENV)pip install mlx-2.2-py3-none-any.whl
+
+test-graph:
+	$(VENV)python3 test-graph.py
+
 
 .PHONY: run debug clean lint lint-strict install
