@@ -1,4 +1,5 @@
 from using_types import ConfigValue
+from using_types import MazeConfig
 import sys
 from typing import Tuple
 import maze_grid
@@ -29,13 +30,39 @@ def main() -> None:
     if not status:
         return print(message)
 
+    width = config["width"]
+    height = config["height"]
+    entry = config["entry"]
+    exit_point = config["exit"]
+    output_file = config["output_file"]
+    perfect = config["perfect"]
+
+    if (
+        not isinstance(width, int) or
+        not isinstance(height, int) or
+        not isinstance(entry, dict) or
+        not isinstance(exit_point, dict) or
+        not isinstance(output_file, str) or
+        not isinstance(perfect, bool)
+    ):
+        raise TypeError("Configuracao inválidas")
+
+    maze_config = MazeConfig(
+            width=width,
+            height=height,
+            entry=entry,
+            exit=exit_point,
+            output_file=output_file,
+            perfect=perfect
+            )
+
     print_config(config)
 
     if None in config.values():
         print("Configuracao incompleta")
     else:
         print("Todos os valores validos")
-    maze_grid.maze_generator(config)
+    maze_grid.maze_generator(maze_config)
 
 
 def reading_config(

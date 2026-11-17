@@ -1,4 +1,4 @@
-from using_types import ConfigValue
+from using_types import MazeConfig
 
 
 def draw_four(maze: list[list[int]], center_ft: int, between_ft: int) -> None:
@@ -29,27 +29,19 @@ def draw_two(maze: list[list[int]], center_ft: int, between_ft: int) -> None:
 
 def insert_ft_entry_exit(
         maze: list[list[int]],
-        config: dict[str, ConfigValue]
+        config: MazeConfig
         ) -> None:
-    if (
-        not isinstance(config["width"], int) or
-        not isinstance(config["height"], int) or
-        not isinstance(config["entry"]["x"], int) or
-        not isinstance(config["entry"]["y"], int) or
-        not isinstance(config["exit"]["x"], int) or
-        not isinstance(config["exit"]["y"], int)
-    ):
-        return
-    between_ft = (config["width"] // 2)
-    print(config["width"])
+
+    between_ft = (config.width // 2)
+    print(config.width)
     print(between_ft)
-    center_ft = (config["height"] // 2)
-    print(config["height"])
+    center_ft = (config.height // 2)
+    print(config.height)
     print(center_ft)
     draw_four(maze, center_ft, between_ft)
     draw_two(maze, center_ft, between_ft)
-    maze[config["entry"]["y"]][config["entry"]["x"]] = 77
-    maze[config["exit"]["y"]][config["exit"]["x"]] = 88
+    maze[config.entry["y"]][config.entry["x"]] = 77
+    maze[config.exit["y"]][config.exit["x"]] = 88
 
 
 def print_maze(maze: list[list[int]]) -> None:
@@ -71,11 +63,11 @@ def print_maze(maze: list[list[int]]) -> None:
         print()
 
 
-def maze_generator(config: dict[str, ConfigValue]) -> list[list[int]]:
+def maze_generator(config: MazeConfig) -> list[list[int]]:
     maze = []
-    for y in range(config["height"]):
+    for y in range(config.height):
         row = []
-        for x in range(config["width"]):
+        for x in range(config.width):
             row.append(15)
         maze.append(row)
 
