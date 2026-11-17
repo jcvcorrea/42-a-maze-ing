@@ -1,6 +1,6 @@
 PYTHON = python3
 NAME = a_maze_ing.py 
-EXTRA_FILES = maze_grid.py types.py
+EXTRA_FILES = maze_grid.py using_types.py
 CONFIG = config.txt
 REMOVE = __pycache__ .mypy_cache
 VENV = .venv/bin/
