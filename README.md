@@ -8,8 +8,6 @@ A-Maze-ing is a Python project developed as part of the 42 Common Core curriculu
 
 The goal is to create a maze generator capable of producing valid mazes from a configuration file, finding a path between the entrance and exit, and displaying the result visually.
 
-The project explores algorithms, graph theory, recursion, data structures, file handling, and modular programming.
-
 ### Project Requirements
 
 The completed program must support:
@@ -79,8 +77,6 @@ PERFECT=False
 
 All six parameters are mandatory. Lines beginning with `#` are treated as comments.
 
-Additional parameters, such as a random seed, may be supported.
-
 ## Maze Representation
 
 Each cell uses four bits to represent its walls:
@@ -112,8 +108,6 @@ The project will provide a reusable `MazeGenerator` class in a standalone Python
 
 The reusable module must allow another project to generate mazes using custom parameters, access the generated structure, and retrieve a solution.
 
-**Pending:** Add the actual class usage example, custom parameter instructions, and package installation details after the reusable module is implemented.
-
 ## Team and Project Management
 
 ### Team Members
@@ -131,33 +125,27 @@ The reusable module must allow another project to generate mazes using custom pa
 
 Both members participate in project design, integration, testing, and technical decisions.
 
-### Development Plan
-
-The development is organized into stages:
-
-1. Repository setup and configuration handling.
-2. Initial grid representation and validation.
-3. Maze generation algorithms and connectivity.
-4. Graphical interface and user interactions.
-5. Reusable module and package creation.
-6. Integration, testing, and documentation.
-
-### Project Evolution
-
-The first development stage focused on configuration parsing, type validation, exception handling, and creating the initial grid.
-
-The graphical interface is being developed in parallel to support integration with the maze generator.
-
-**To be updated before submission:** Changes to the original plan, challenges encountered, successful approaches, and possible improvements.
-
 ### Tools
 
 - Python
-- Git and GitHub
+- GitHub
 - Make
 - flake8
 - mypy
 - MiniLibX (graphical interface)
+
+## License
+
+This project is distributed under the MIT License.
+
+The MIT License was chosen because it is simple and permissive,
+allowing the maze generator to be reused, modified, and distributed
+in other projects.
+
+It also requires the original copyright and license notices to be
+preserved, ensuring recognition of the authors.
+
+See [LICENSE.md](LICENSE.md) for the full license text.
 
 ## Resources
 
@@ -166,6 +154,7 @@ The graphical interface is being developed in parallel to support integration wi
 - [Python Documentation](https://docs.python.org/3/)
 - [Python typing documentation](https://docs.python.org/3/library/typing.html)
 - [Python exceptions documentation](https://docs.python.org/3/tutorial/errors.html)
+- [MiniLibX Python Documentation — Sara Freitas](https://sarafreitas-dev.github.io/MinilibX-42-Pyhton-Documentation/)
 - A-Maze-ing official subject, version 2.3
 
 Additional references for the selected maze-generation algorithm will be included when the algorithm is finalized.
@@ -179,9 +168,3 @@ AI was used as a learning and development support tool for:
 - Discussing input validation and edge cases.
 
 The team remains responsible for understanding, implementing, testing, and validating the submitted code.
-
-## Project Status
-
-**Work in progress.**
-
-Configuration parsing, initial validation, and grid representation are under development and testing. Maze generation, graphical integration, packaging, and final validation remain to be completed.
