@@ -15,12 +15,12 @@ clean:
 	rm -rf $(REMOVE)
 
 lint:
-	$(VENV)flake8 $(NAME) $(EXTRA_FILES)
-	$(VENV)mypy $(NAME) $(EXTRA_FILES) --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
+	$(VENV)flake8 .
+	$(VENV)mypy . --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
 
 lint-strict:
-	$(VENV)flake8 $(NAME) $(EXTRA_FILES)
-	$(VENV)mypy $(NAME) $(EXTRA_FILES) --strict
+	$(VENV)flake8 .
+	$(VENV)mypy . --strict
 
 install:
 	python3 -m venv .venv
