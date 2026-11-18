@@ -40,8 +40,12 @@ def insert_ft_entry_exit(
     print(center_ft)
     draw_four(maze, center_ft, between_ft)
     draw_two(maze, center_ft, between_ft)
-    maze[config.entry["y"]][config.entry["x"]] = 77
-    maze[config.exit["y"]][config.exit["x"]] = 88
+    if (maze[config.entry["y"]][config.entry["x"]] == 99 or
+            maze[config.exit["y"]][config.exit["x"]] == 99):
+        raise ValueError("Erro: Entrada ou Saída coincide com 42")
+    else:
+        maze[config.entry["y"]][config.entry["x"]] = 77
+        maze[config.exit["y"]][config.exit["x"]] = 88
 
 
 def print_maze(maze: list[list[int]]) -> None:

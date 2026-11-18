@@ -86,7 +86,10 @@ def main() -> None:
         print("Configuracao incompleta")
     else:
         print("Todos os valores validos")
-    maze_grid.maze_generator(maze_config)
+    try:
+        maze_grid.maze_generator(maze_config)
+    except (ValueError) as maze_generator_error:
+        return print(maze_generator_error)
 
 
 def reading_config(
